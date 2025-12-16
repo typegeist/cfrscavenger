@@ -158,38 +158,38 @@
             const completedCount = Object.keys(completedChallenges).length;
 
             return (
-                <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-6">
+                <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-3 sm:p-6">
                     <div className="max-w-4xl mx-auto">
-                        <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
-                            <div className="flex items-center justify-between mb-4">
-                                <h1 className="text-3xl font-bold text-indigo-900">CFR.org Scavenger Hunt</h1>
-                                <Trophy className="w-10 h-10 text-yellow-500" />
+                        <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 mb-4 sm:mb-6">
+                            <div className="flex items-center justify-between mb-4 gap-3">
+                                <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-indigo-900">CFR.org Scavenger Hunt</h1>
+                                <Trophy className="w-8 h-8 sm:w-10 sm:h-10 text-yellow-500 flex-shrink-0" />
                             </div>
-                            <p className="text-gray-600 mb-4">
+                            <p className="text-gray-600 mb-4 text-sm sm:text-base">
                                 Explore the Council on Foreign Relations website and complete challenges to learn about this premier foreign policy resource!
                             </p>
                             
-                            <div className="grid grid-cols-3 gap-4 mt-4">
-                                <div className="bg-indigo-50 rounded p-3 text-center">
-                                    <div className="text-2xl font-bold text-indigo-600">{completedCount}/{challenges.length}</div>
-                                    <div className="text-sm text-gray-600">Completed</div>
+                            <div className="grid grid-cols-3 gap-2 sm:gap-4 mt-4">
+                                <div className="bg-indigo-50 rounded p-2 sm:p-3 text-center">
+                                    <div className="text-lg sm:text-2xl font-bold text-indigo-600">{completedCount}/{challenges.length}</div>
+                                    <div className="text-xs sm:text-sm text-gray-600">Completed</div>
                                 </div>
-                                <div className="bg-green-50 rounded p-3 text-center">
-                                    <div className="text-2xl font-bold text-green-600">{totalPoints}/{maxPoints}</div>
-                                    <div className="text-sm text-gray-600">Points</div>
+                                <div className="bg-green-50 rounded p-2 sm:p-3 text-center">
+                                    <div className="text-lg sm:text-2xl font-bold text-green-600">{totalPoints}/{maxPoints}</div>
+                                    <div className="text-xs sm:text-sm text-gray-600">Points</div>
                                 </div>
-                                <div className="bg-purple-50 rounded p-3 text-center">
-                                    <div className="text-2xl font-bold text-purple-600">
+                                <div className="bg-purple-50 rounded p-2 sm:p-3 text-center">
+                                    <div className="text-lg sm:text-2xl font-bold text-purple-600">
                                         {Math.round((totalPoints / maxPoints) * 100) || 0}%
                                     </div>
-                                    <div className="text-sm text-gray-600">Progress</div>
+                                    <div className="text-xs sm:text-sm text-gray-600">Progress</div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded">
-                            <h3 className="font-bold text-blue-900 mb-2">How to Play:</h3>
-                            <ol className="text-sm text-blue-800 space-y-1 list-decimal list-inside">
+                        <div className="bg-blue-50 border-l-4 border-blue-500 p-3 sm:p-4 mb-4 sm:mb-6 rounded">
+                            <h3 className="font-bold text-blue-900 mb-2 text-sm sm:text-base">How to Play:</h3>
+                            <ol className="text-xs sm:text-sm text-blue-800 space-y-1 list-decimal list-inside">
                                 <li>Click on the CFR.org link for each challenge to visit the website</li>
                                 <li>Complete the challenge by finding the information requested</li>
                                 <li>Enter your answer in the input field</li>
@@ -205,57 +205,57 @@
                                 return (
                                     <div 
                                         key={challenge.id}
-                                        className={`bg-white rounded-lg shadow-md p-5 transition-all ${
+                                        className={`bg-white rounded-lg shadow-md p-3 sm:p-5 transition-all ${
                                             isCompleted ? 'border-2 border-green-400' : 'border-2 border-transparent'
                                         }`}
                                     >
-                                        <div className="flex items-start gap-4">
+                                        <div className="flex items-start gap-2 sm:gap-4">
                                             <div className="flex-shrink-0 mt-1">
                                                 {isCompleted ? (
-                                                    <CheckCircle className="w-6 h-6 text-green-500" />
+                                                    <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-green-500" />
                                                 ) : (
-                                                    <Circle className="w-6 h-6 text-gray-300" />
+                                                    <Circle className="w-5 h-5 sm:w-6 sm:h-6 text-gray-300" />
                                                 )}
                                             </div>
                                             
-                                            <div className="flex-grow">
-                                                <div className="flex items-center justify-between mb-2">
+                                            <div className="flex-grow min-w-0">
+                                                <div className="flex items-center justify-between mb-2 gap-2">
                                                     <div>
                                                         <span className="inline-block bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded mb-2">
                                                             {challenge.category}
                                                         </span>
                                                     </div>
-                                                    <div className="text-right">
-                                                        <div className="text-lg font-bold text-indigo-600">
+                                                    <div className="text-right flex-shrink-0">
+                                                        <div className="text-base sm:text-lg font-bold text-indigo-600">
                                                             {challenge.points} pts
                                                         </div>
                                                     </div>
                                                 </div>
                                                 
-                                                <p className="text-gray-700 mb-3 text-lg">{challenge.description}</p>
+                                                <p className="text-gray-700 mb-3 text-base sm:text-lg">{challenge.description}</p>
                                                 
                                                 {!isCompleted && (
                                                     <>
                                                         <button
                                                             onClick={() => toggleHint(challenge.id)}
-                                                            className="text-sm text-indigo-600 hover:text-indigo-800 mb-2 underline"
+                                                            className="text-xs sm:text-sm text-indigo-600 hover:text-indigo-800 mb-2 underline"
                                                         >
                                                             {showHints[challenge.id] ? '− Hide hint' : '+ Show hint'}
                                                         </button>
                                                         
                                                         {showHints[challenge.id] && (
-                                                            <div className="bg-yellow-50 border border-yellow-200 rounded p-2 mb-3 text-sm text-yellow-800">
+                                                            <div className="bg-yellow-50 border border-yellow-200 rounded p-2 mb-3 text-xs sm:text-sm text-yellow-800">
                                                                 <strong>Hint:</strong> {challenge.hint}
                                                             </div>
                                                         )}
                                                         
-                                                        <div className="flex gap-2 mb-3">
+                                                        <div className="flex flex-col sm:flex-row gap-2 mb-3">
                                                             <input
                                                                 type="text"
                                                                 value={answers[challenge.id] || ''}
                                                                 onChange={(e) => handleAnswerChange(challenge.id, e.target.value)}
                                                                 placeholder="Enter your answer..."
-                                                                className="flex-grow px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                                                className="flex-grow px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm sm:text-base"
                                                                 onKeyPress={(e) => {
                                                                     if (e.key === 'Enter') {
                                                                         submitAnswer(challenge);
@@ -264,7 +264,7 @@
                                                             />
                                                             <button
                                                                 onClick={() => submitAnswer(challenge)}
-                                                                className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition-colors"
+                                                                className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition-colors text-sm sm:text-base whitespace-nowrap"
                                                             >
                                                                 Submit
                                                             </button>
@@ -274,16 +274,16 @@
                                                             href={challenge.url}
                                                             target="_blank"
                                                             rel="noopener noreferrer"
-                                                            className="inline-flex items-center gap-1 text-sm text-blue-600 hover:text-blue-800 hover:underline"
+                                                            className="inline-flex items-center gap-1 text-xs sm:text-sm text-blue-600 hover:text-blue-800 hover:underline"
                                                         >
-                                                            <MapPin className="w-4 h-4" />
+                                                            <MapPin className="w-3 h-3 sm:w-4 sm:h-4" />
                                                             Visit CFR.org to find the answer
                                                         </a>
                                                     </>
                                                 )}
                                                 
                                                 {isCompleted && (
-                                                    <div className="bg-green-50 border border-green-200 rounded p-3 text-green-800">
+                                                    <div className="bg-green-50 border border-green-200 rounded p-3 text-green-800 text-sm sm:text-base">
                                                         <strong>✓ Challenge completed!</strong> Great work exploring this section of CFR.org.
                                                     </div>
                                                 )}
@@ -295,13 +295,13 @@
                         </div>
 
                         {completedCount === challenges.length && (
-                            <div className="mt-6 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg shadow-lg p-6 text-white text-center">
-                                <Trophy className="w-16 h-16 mx-auto mb-4" />
-                                <h2 className="text-3xl font-bold mb-2">Congratulations!</h2>
-                                <p className="text-xl">
+                            <div className="mt-4 sm:mt-6 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg shadow-lg p-4 sm:p-6 text-white text-center">
+                                <Trophy className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4" />
+                                <h2 className="text-2xl sm:text-3xl font-bold mb-2">Congratulations!</h2>
+                                <p className="text-base sm:text-xl">
                                     You've completed the CFR.org scavenger hunt and earned all {maxPoints} points!
                                 </p>
-                                <p className="mt-2">
+                                <p className="mt-2 text-sm sm:text-base">
                                     You're now familiar with the Council on Foreign Relations' website and ready to explore global affairs!
                                 </p>
                             </div>
