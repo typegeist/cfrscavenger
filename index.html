@@ -52,7 +52,7 @@
                     id: 1,
                     category: "Getting Started",
                     description: "Navigate to the 'About' section and find when CFR was founded.",
-                    hint: "Look for the About page in the main navigation",
+                    hint: "Look for the About page in the main navigation. It's a 4-digit year in the 1900s.",
                     answer: "1921",
                     points: 10,
                     url: "https://www.cfr.org/about"
@@ -61,49 +61,58 @@
                     id: 2,
                     category: "Publications",
                     description: "Locate CFR's flagship publication. What is it called?",
-                    hint: "Check the main navigation or look for publications",
+                    hint: "Check the main navigation or look for publications. It's a two-word title.",
                     answer: "foreign affairs",
                     points: 10,
                     url: "https://www.cfr.org"
                 },
                 {
                     id: 3,
-                    category: "Content Exploration",
-                    description: "Find an article or analysis about a current global issue. What region or topic did you choose?",
-                    hint: "Look for sections like 'Regions', 'Topics', or recent articles on the homepage",
-                    answer: "open",
-                    points: 15,
-                    url: "https://www.cfr.org"
-                },
-                {
-                    id: 4,
                     category: "Experts",
-                    description: "Find the 'Experts' section. How many different expertise areas can you identify?",
-                    hint: "Look for a section dedicated to CFR fellows and scholars",
-                    answer: "open",
+                    description: "What is the name of Benn Steil's research associate?",
+                    hint: "Search for 'Benn Steil' in the Experts section or use the site search. Look for his profile page to find his research associate's name.",
+                    answer: "samuel zucker",
                     points: 15,
                     url: "https://www.cfr.org/experts"
                 },
                 {
-                    id: 5,
-                    category: "Multimedia",
-                    description: "Find a video event or interview. What's the title?",
-                    hint: "Look for Events, Videos, or Multimedia sections",
+                    id: 4,
+                    category: "Content Exploration",
+                    description: "Find an article or analysis about a current global issue. What region or topic did you choose?",
+                    hint: "Look for sections like 'Regions', 'Topics', or recent articles on the homepage",
                     answer: "open",
+                    points: 10,
+                    url: "https://www.cfr.org"
+                },
+                {
+                    id: 5,
+                    category: "Podcasts",
+                    description: "Who was the guest on the September 30 episode of The President's Inbox podcast?",
+                    hint: "Search for 'The President's Inbox' podcast or look in the multimedia/podcasts section. Find the episode from September 30.",
+                    answer: "matt waxman",
                     points: 15,
                     url: "https://www.cfr.org"
                 },
                 {
                     id: 6,
-                    category: "Deep Dive",
-                    description: "Navigate to a topic page (like China, Climate, or Middle East). What helpful features do you notice?",
-                    hint: "Topic pages aggregate content by subject",
+                    category: "Multimedia",
+                    description: "Find a video event or interview. What's the title?",
+                    hint: "Look for Events, Videos, or Multimedia sections",
                     answer: "open",
-                    points: 20,
+                    points: 10,
                     url: "https://www.cfr.org"
                 },
                 {
                     id: 7,
+                    category: "Publications",
+                    description: "What is the title of the last entry on the last page of the Books index page?",
+                    hint: "Look for the 'Books' section in the navigation or search for CFR books. Navigate to the last page of the books index to find the final entry.",
+                    answer: "the expanding role of state and local governments in u.s. foreign affairs",
+                    points: 15,
+                    url: "https://www.cfr.org"
+                },
+                {
+                    id: 8,
                     category: "Search & Discovery",
                     description: "Use the site's search feature to find content on a topic you're interested in. What did you search for?",
                     hint: "Look for a search icon or bar in the navigation",
@@ -125,6 +134,13 @@
                 
                 if (challenge.answer === "open") {
                     return userAnswer && userAnswer.length > 0;
+                }
+                
+                // Handle array of acceptable answers
+                if (Array.isArray(challenge.answer)) {
+                    return challenge.answer.some(acceptableAnswer => 
+                        userAnswer === acceptableAnswer.toLowerCase()
+                    );
                 }
                 
                 return userAnswer === challenge.answer.toLowerCase();
