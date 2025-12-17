@@ -28,6 +28,12 @@
             </svg>
         );
 
+        const XCircle = ({ className }) => (
+            <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+        );
+
         const Trophy = ({ className }) => (
             <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
@@ -43,6 +49,7 @@
 
         const ScavengerHunt = () => {
             const [completedChallenges, setCompletedChallenges] = useState({});
+            const [wrongAnswers, setWrongAnswers] = useState({});
             const [startTime] = useState(Date.now());
             const [answers, setAnswers] = useState({});
             const [showHints, setShowHints] = useState({});
@@ -156,6 +163,16 @@
                         ...answers,
                         [challenge.id]: ''
                     });
+                    // Clear any wrong answer state
+                    const newWrongAnswers = { ...wrongAnswers };
+                    delete newWrongAnswers[challenge.id];
+                    setWrongAnswers(newWrongAnswers);
+                } else {
+                    // Mark as wrong answer
+                    setWrongAnswers({
+                        ...wrongAnswers,
+                        [challenge.id]: true
+                    });
                 }
             };
 
@@ -229,6 +246,8 @@
                                             <div className="flex-shrink-0 mt-1">
                                                 {isCompleted ? (
                                                     <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-green-500" />
+                                                ) : wrongAnswers[challenge.id] ? (
+                                                    <XCircle className="w-5 h-5 sm:w-6 sm:h-6 text-red-500" />
                                                 ) : (
                                                     <Circle className="w-5 h-5 sm:w-6 sm:h-6 text-gray-300" />
                                                 )}
