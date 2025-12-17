@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CFR.org Scavenger Hunt</title>
+    <title>CFR.rocks Scavenger Hunt</title>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -62,7 +62,7 @@
                     hint: "Look for the About page in the main navigation. It's a 4-digit year in the 1900s.",
                     answer: "1921",
                     points: 10,
-                    url: "https://www.cfr.org/about"
+                    url: "https://cfr.cfr.rocks/about"
                 },
                 {
                     id: 2,
@@ -71,7 +71,7 @@
                     hint: "Check the main navigation or look for publications. It's a two-word title.",
                     answer: "foreign affairs",
                     points: 10,
-                    url: "https://www.cfr.org"
+                    url: "https://cfr.cfr.rocks"
                 },
                 {
                     id: 3,
@@ -80,7 +80,7 @@
                     hint: "Search for 'Benn Steil' in the Experts section or use the site search. Look for his profile page to find his research associate's name.",
                     answer: "samuel zucker",
                     points: 15,
-                    url: "https://www.cfr.org/experts"
+                    url: "https://cfr.cfr.rocks/experts"
                 },
                 {
                     id: 4,
@@ -89,7 +89,7 @@
                     hint: "Look for sections like 'Regions', 'Topics', or recent articles on the homepage",
                     answer: "open",
                     points: 10,
-                    url: "https://www.cfr.org"
+                    url: "https://cfr.cfr.rocks"
                 },
                 {
                     id: 5,
@@ -98,7 +98,7 @@
                     hint: "Search for 'The President's Inbox' podcast or look in the multimedia/podcasts section. Find the episode from September 30.",
                     answer: "matt waxman",
                     points: 15,
-                    url: "https://www.cfr.org"
+                    url: "https://cfr.cfr.rocks"
                 },
                 {
                     id: 6,
@@ -107,7 +107,7 @@
                     hint: "Look for Events, Videos, or Multimedia sections",
                     answer: "open",
                     points: 10,
-                    url: "https://www.cfr.org"
+                    url: "https://cfr.cfr.rocks"
                 },
                 {
                     id: 7,
@@ -116,7 +116,7 @@
                     hint: "Look for the 'Books' section in the navigation or search for CFR books. Navigate to the last page of the books index to find the final entry.",
                     answer: "the expanding role of state and local governments in u.s. foreign affairs",
                     points: 15,
-                    url: "https://www.cfr.org"
+                    url: "https://cfr.cfr.rocks"
                 },
                 {
                     id: 8,
@@ -125,7 +125,7 @@
                     hint: "Look for a search icon or bar in the navigation",
                     answer: "open",
                     points: 15,
-                    url: "https://www.cfr.org"
+                    url: "https://cfr.cfr.rocks"
                 }
             ];
 
@@ -195,7 +195,7 @@
                     <div className="max-w-4xl mx-auto">
                         <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 mb-4 sm:mb-6">
                             <div className="flex items-center justify-between mb-4 gap-3">
-                                <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-indigo-900">CFR.org Scavenger Hunt</h1>
+                                <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-indigo-900">CFR.rocks Scavenger Hunt</h1>
                                 <Trophy className="w-8 h-8 sm:w-10 sm:h-10 text-yellow-500 flex-shrink-0" />
                             </div>
                             <p className="text-gray-600 mb-4 text-sm sm:text-base">
@@ -223,11 +223,11 @@
                         <div className="bg-blue-50 border-l-4 border-blue-500 p-3 sm:p-4 mb-4 sm:mb-6 rounded">
                             <h3 className="font-bold text-blue-900 mb-2 text-sm sm:text-base">How to Play:</h3>
                             <ol className="text-xs sm:text-sm text-blue-800 space-y-1 list-decimal list-inside">
-                                <li>Click on the CFR.org link for each challenge to visit the website</li>
+                                <li>Click on the CFR.rocks link for each challenge to visit the website</li>
                                 <li>Complete the challenge by finding the information requested</li>
                                 <li>Enter your answer in the input field</li>
                                 <li>Click "Submit" to check your answer and earn points</li>
-                                <li>Complete all challenges to become a CFR.org expert!</li>
+                                <li>Complete all challenges to become a CFR.rocks expert!</li>
                             </ol>
                         </div>
 
@@ -271,6 +271,12 @@
                                                 
                                                 {!isCompleted && (
                                                     <>
+                                                        {wrongAnswers[challenge.id] && (
+                                                            <div className="bg-red-50 border border-red-200 rounded p-3 mb-3 text-red-800 text-sm sm:text-base">
+                                                                <strong>✗ Incorrect answer.</strong> The input field is now locked. Please try again later or contact support.
+                                                            </div>
+                                                        )}
+                                                        
                                                         <button
                                                             onClick={() => toggleHint(challenge.id)}
                                                             className="text-xs sm:text-sm text-indigo-600 hover:text-indigo-800 mb-2 underline"
@@ -290,16 +296,22 @@
                                                                 value={answers[challenge.id] || ''}
                                                                 onChange={(e) => handleAnswerChange(challenge.id, e.target.value)}
                                                                 placeholder="Enter your answer..."
-                                                                className="flex-grow px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm sm:text-base"
+                                                                disabled={wrongAnswers[challenge.id]}
+                                                                className={`flex-grow px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm sm:text-base ${
+                                                                    wrongAnswers[challenge.id] ? 'bg-gray-100 cursor-not-allowed opacity-60' : ''
+                                                                }`}
                                                                 onKeyPress={(e) => {
-                                                                    if (e.key === 'Enter') {
+                                                                    if (e.key === 'Enter' && !wrongAnswers[challenge.id]) {
                                                                         submitAnswer(challenge);
                                                                     }
                                                                 }}
                                                             />
                                                             <button
                                                                 onClick={() => submitAnswer(challenge)}
-                                                                className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition-colors text-sm sm:text-base whitespace-nowrap"
+                                                                disabled={wrongAnswers[challenge.id]}
+                                                                className={`px-4 py-2 bg-indigo-600 text-white rounded transition-colors text-sm sm:text-base whitespace-nowrap ${
+                                                                    wrongAnswers[challenge.id] ? 'opacity-50 cursor-not-allowed' : 'hover:bg-indigo-700'
+                                                                }`}
                                                             >
                                                                 Submit
                                                             </button>
@@ -312,14 +324,14 @@
                                                             className="inline-flex items-center gap-1 text-xs sm:text-sm text-blue-600 hover:text-blue-800 hover:underline"
                                                         >
                                                             <MapPin className="w-3 h-3 sm:w-4 sm:h-4" />
-                                                            Visit CFR.org to find the answer
+                                                            Visit CFR.rocks to find the answer
                                                         </a>
                                                     </>
                                                 )}
                                                 
                                                 {isCompleted && (
                                                     <div className="bg-green-50 border border-green-200 rounded p-3 text-green-800 text-sm sm:text-base">
-                                                        <strong>✓ Challenge completed!</strong> Great work exploring this section of CFR.org.
+                                                        <strong>✓ Challenge completed!</strong> Great work exploring this section of CFR.rocks.
                                                     </div>
                                                 )}
                                             </div>
@@ -334,7 +346,7 @@
                                 <Trophy className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4" />
                                 <h2 className="text-2xl sm:text-3xl font-bold mb-2">Congratulations!</h2>
                                 <p className="text-base sm:text-xl">
-                                    You've completed the CFR.org scavenger hunt and earned all {maxPoints} points!
+                                    You've completed the CFR.rocks scavenger hunt and earned all {maxPoints} points!
                                 </p>
                                 <p className="mt-2 text-sm sm:text-base">
                                     You're now familiar with the Council on Foreign Relations' website and ready to explore global affairs!
